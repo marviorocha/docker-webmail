@@ -1,14 +1,13 @@
-version: '3.8'
+
 
 services:
   mailserver:
     image: mailserver/docker-mailserver:latest
     container_name: mailserver
-    hostname: mail          # hostname do servidor
-    domainname: mail.meuelevador.com  # seu domínio ou subdomínio
+    hostname: mail
+    domainname: meuelevador.com
     ports:
       - "25:25"
-      - "465:465"
       - "587:587"
       - "993:993"
     volumes:
@@ -16,6 +15,8 @@ services:
       - ./config/mail-state/:/var/mail-state
       - ./config/mail-logs/:/var/log/mail
       - ./config/:/tmp/docker-mailserver/
+      - ./config/ssl:/etc/letsencrypt
+      - ./config/dkim:/tmp/docker-mailserver/opendkim/keys
     env_file:
       - ./config/.env
     restart: unless-stopped
@@ -23,3 +24,4 @@ services:
       - NET_ADMIN
       - SYS_PTRACE
     stop_grace_period: 1m
+
