@@ -5,9 +5,10 @@ services:
     image: mailserver/docker-mailserver:latest
     container_name: mailserver
     hostname: mail          # hostname do servidor
-    domainname: seudominio.com  # seu domínio ou subdomínio
+    domainname: mail.meuelevador.com  # seu domínio ou subdomínio
     ports:
       - "25:25"
+      - "465:465"
       - "587:587"
       - "993:993"
     volumes:
