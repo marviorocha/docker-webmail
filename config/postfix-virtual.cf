@@ -1,0 +1,20 @@
+# Domínio e hostname
+HOSTNAME=mail
+DOMAINNAME=meuelevador.com
+
+# Conta de email padrão para encaminhar
+ENABLE_LDAP=0
+ONE_DIR=1
+ENABLE_FAIL2BAN=0
+ENABLE_CLAMAV=0
+ENABLE_SPAMASSASSIN=1
+ENABLE_POSTGREY=0
+
+# Encaminhamento via virtual aliases
+POSTFIX_INET_PROTOCOLS=all
+
+# DKIM opcional
+ENABLE_OPENDKIM=0
+
+# Log level
+LOG_LEVEL=info

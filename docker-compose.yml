@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mailserver:
+    image: mailserver/docker-mailserver:latest
+    container_name: mailserver
+    hostname: mail          # hostname do servidor
+    domainname: seudominio.com  # seu domínio ou subdomínio
+    ports:
+      - "25:25"
+      - "587:587"
+      - "993:993"
+    volumes:
+      - ./config/mail-data/:/var/mail
+      - ./config/mail-state/:/var/mail-state
+      - ./config/mail-logs/:/var/log/mail
+      - ./config/:/tmp/docker-mailserver/
+    env_file:
+      - ./config/.env
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_PTRACE
+    stop_grace_period: 1m
